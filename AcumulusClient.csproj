@@ -69,6 +69,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebApiDoodle.Net.Http.Formatting, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WebApiDoodle.Net.Http.Formatting.2.0.1\lib\net40\WebApiDoodle.Net.Http.Formatting.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcumulusClient.cs" />
@@ -89,6 +92,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AcumulusClient.nuspec" />
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>

@@ -1,0 +1,5 @@
+D:\Users\sander\Source\Repos\AcumulusClient\bin\Release\AcumulusClient.dll.config
+D:\Users\sander\Source\Repos\AcumulusClient\bin\Release\AcumulusClient.dll
+D:\Users\sander\Source\Repos\AcumulusClient\bin\Release\AcumulusClient.pdb
+D:\Users\sander\Source\Repos\AcumulusClient\obj\Release\AcumulusClient.dll
+D:\Users\sander\Source\Repos\AcumulusClient\obj\Release\AcumulusClient.pdb
