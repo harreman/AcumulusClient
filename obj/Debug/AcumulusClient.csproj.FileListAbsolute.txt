@@ -1,6 +1,5 @@
 D:\Users\sander\Source\Repos\AcumulusClient\bin\Debug\AcumulusClient.dll.config
 D:\Users\sander\Source\Repos\AcumulusClient\bin\Debug\AcumulusClient.dll
 D:\Users\sander\Source\Repos\AcumulusClient\bin\Debug\AcumulusClient.pdb
-D:\Users\sander\Source\Repos\AcumulusClient\obj\Debug\AcumulusClient.csprojResolveAssemblyReference.cache
 D:\Users\sander\Source\Repos\AcumulusClient\obj\Debug\AcumulusClient.dll
 D:\Users\sander\Source\Repos\AcumulusClient\obj\Debug\AcumulusClient.pdb
