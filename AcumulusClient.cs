@@ -173,14 +173,21 @@ namespace AcumulusClient
             return AcumulusBaseObject.FromXML<Entry>(t);
         }
 
-        public string CreateInvoice(Customer invoice)
+        public CreateInvoiceResponse CreateInvoice(Customer invoice)
         {
             AcumulusBaseObject obj = new AcumulusBaseObject();
             obj.withcontract = true;
             obj.Url = "/acumulus/stable/invoices/invoice_add.php";
             obj.entryid = invoice.ToXML().Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "").Replace("<format>xml</format>", "");
             var t = Post(obj, true);
-            return t.Substring(from: "<invoicenumber>", until: "</invoicenumber>");
+
+            return new CreateInvoiceResponse()
+            {
+                Entryid = t.Substring(from: "<entryid>", until: "</entryid>"),
+                Invoicenumber = t.Substring(from: "<invoicenumber>", until: "</invoicenumber>"),
+                Token = t.Substring(from: "<token>", until: "</token>"),
+                NonParsedMessage=t
+            };
         }
 
         public void Dispose()

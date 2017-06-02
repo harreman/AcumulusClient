@@ -54,6 +54,7 @@
     <Compile Include="entities\Connector.cs" />
     <Compile Include="entities\Contact.cs" />
     <Compile Include="entities\Contract.cs" />
+    <Compile Include="entities\CreateInvoiceResponse.cs" />
     <Compile Include="entities\Customer.cs" />
     <Compile Include="entities\EmailInvoice.cs" />
     <Compile Include="entities\Entry.cs" />

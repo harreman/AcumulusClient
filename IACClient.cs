@@ -12,7 +12,7 @@ namespace AcumulusClient
         IList<ACInvoice> GetInvoices(string contactid);
         Entry GetInvoiceDetail(string entryid);
         IList<Entry> GetOpenInvoices();
-        string CreateInvoice(Customer acinvoice);
+        CreateInvoiceResponse CreateInvoice(Customer acinvoice);
         void SetPaidStatus(string token,DateTime? invoicedate);
         IList<ACAccount> GetBankAccounts();
         IList<ACInvoiceTermplate> GetInvoiceTemplates();
