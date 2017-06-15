@@ -6,7 +6,7 @@ namespace AcumulusClient.entities
 
     /// <remarks/>
     [Serializable, XmlRoot("accounts")]
-    public partial class accounts
+    public partial class Accounts
     {
 
         private ACAccount[] accountField;

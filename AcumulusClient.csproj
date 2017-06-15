@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AcumulusClient.cs" />
+    <Compile Include="ACClient.cs" />
     <Compile Include="entities\Account.cs" />
     <Compile Include="entities\AcumulusBaseObject.cs" />
     <Compile Include="entities\BTWType.cs" />

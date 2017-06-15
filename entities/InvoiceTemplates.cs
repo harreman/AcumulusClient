@@ -6,7 +6,7 @@ namespace AcumulusClient.entities
 
     /// <remarks/>
     [Serializable, XmlRoot("invoicetemplates")]
-    public partial class invoicetemplates
+    public partial class Invoicetemplates
     {
 
         private ACInvoiceTermplate[] invoicetemplateField;
