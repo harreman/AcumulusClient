@@ -14,10 +14,14 @@ namespace AcumulusClient.entities
     public class AcumulusBaseObject
 
     {
+        public AcumulusBaseObject()
+        {
+        }
         public AcumulusBaseObject(Contract _contract) : base()
         {
             contract = _contract;
         }
+
 
         [XmlIgnore]
         public string Url = "";
