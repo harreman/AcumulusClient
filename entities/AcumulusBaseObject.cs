@@ -14,9 +14,9 @@ namespace AcumulusClient.entities
     public class AcumulusBaseObject
 
     {
-
-        public AcumulusBaseObject() : base()
+        public AcumulusBaseObject(Contract _contract) : base()
         {
+            contract = _contract;
         }
 
         [XmlIgnore]
@@ -74,7 +74,7 @@ namespace AcumulusClient.entities
         public string ToXML()
 
         {
-            if (withcontract)
+            if (!withcontract)
             {
                 contract = new Contract();
 

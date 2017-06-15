@@ -39,18 +39,12 @@ namespace AcumulusClient
     public partial class ACClient : IACClient
     {
 
-        private readonly string contractcode;
-        private readonly string username;
-        private readonly string password;
-        private readonly string emailonerror;
-        private readonly string emailonwarning;
-
+        private readonly Contract contract;
         private readonly HttpClient client = new HttpClient();
 
-
-        public ACClient()
+        public ACClient(Contract _contract)
         {
-
+            contract = _contract;
             client = new HttpClient();
             client.BaseAddress = new Uri("https://api.sielsystems.nl");
         }
@@ -61,7 +55,7 @@ namespace AcumulusClient
             string xmlstring = data.ToXML().Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
             var response = client.GetAsync(data.Url + "?xmlstring=" + HttpUtility.HtmlEncode(xmlstring)).Result;
             var text = response.Content.ReadAsStringAsync();
-            return new AcumulusBaseObject();
+            return new AcumulusBaseObject(contract);
 
         }
 
@@ -119,14 +113,14 @@ namespace AcumulusClient
 
         public void GetGeneralInfo()
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject();
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
             obj.Url = "/acumulus/stable/general/my_acumulus.php";
             obj.withcontract = true;
             var t = Post(obj);
         }
         public IList<Contact> GetContactList()
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject();
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
             obj.Url = "/acumulus/stable/contacts/contacts_list.php";
             obj.withcontract = true;
             var t = Post(obj);
@@ -136,7 +130,7 @@ namespace AcumulusClient
 
         public IList<Product> GetProducts()
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject();
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
             obj.Url = "/acumulus/stable/picklists/picklist_products.php";
             obj.withcontract = true;
             var t = Post(obj);
@@ -145,7 +139,7 @@ namespace AcumulusClient
 
         public IList<Entry> GetOpenInvoices()
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject();
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
             obj.Url = "/acumulus/stable/reports/report_unpaid_debtors.php";
             obj.withcontract = true;
             var t = Post(obj);
@@ -155,7 +149,7 @@ namespace AcumulusClient
 
         public IList<ACInvoice> GetInvoices(string contactid)
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject();
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
             obj.Url = "/acumulus/stable/contacts/contact_invoices_outgoing.php";
             obj.contactid = contactid.ToString();
             obj.withcontract = true;
@@ -165,7 +159,7 @@ namespace AcumulusClient
 
         public Entry GetInvoiceDetail(string entryid)
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject();
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
             obj.Url = "/acumulus/stable/entry/entry_info.php";
             obj.entryid = entryid;
             obj.withcontract = true;
@@ -175,7 +169,7 @@ namespace AcumulusClient
 
         public CreateInvoiceResponse CreateInvoice(Customer invoice)
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject();
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
             obj.withcontract = true;
             obj.Url = "/acumulus/stable/invoices/invoice_add.php";
             obj.entryid = invoice.ToXML().Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "").Replace("<format>xml</format>", "");
@@ -186,7 +180,7 @@ namespace AcumulusClient
                 Entryid = t.Substring(from: "<entryid>", until: "</entryid>"),
                 Invoicenumber = t.Substring(from: "<invoicenumber>", until: "</invoicenumber>"),
                 Token = t.Substring(from: "<token>", until: "</token>"),
-                NonParsedMessage=t
+                NonParsedMessage = t
             };
         }
 
@@ -234,7 +228,7 @@ namespace AcumulusClient
 
         public IList<ACAccount> GetBankAccounts()
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject();
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
             obj.Url = "acumulus/stable/picklists/picklist_accounts.php";
             obj.withcontract = true;
             var t = Post(obj);
@@ -242,7 +236,7 @@ namespace AcumulusClient
         }
         public IList<ACInvoiceTermplate> GetInvoiceTemplates()
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject();
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
             obj.Url = "acumulus/stable/picklists/picklist_invoicetemplates.php";
             obj.withcontract = true;
             var t = Post(obj);
