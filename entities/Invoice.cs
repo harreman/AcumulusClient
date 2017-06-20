@@ -8,6 +8,8 @@ namespace AcumulusClient.entities
     [XmlRoot("invoice")]
     public class ACInvoice : AcumulusBaseObject
     {
+        [XmlIgnore]
+        public override Contract contract {get;set;}
         public string concept { get; set; }
         public string concepttype { get; set; }
         public string vattype { get; set; }

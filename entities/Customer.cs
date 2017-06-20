@@ -10,6 +10,8 @@ namespace AcumulusClient.entities
     public class Customer : AcumulusBaseObject
     {
         private bool v;
+        [XmlIgnore]
+        public override Contract contract { get; set; }
 
         public Customer() : base()
         {

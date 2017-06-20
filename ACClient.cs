@@ -99,7 +99,7 @@ namespace AcumulusClient
                 data.entryid = "";
             }
             string xmlstring = data.ToXML().Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-
+            xmlstring = xmlstring.Replace("<contract />", "");
             if (removeentryelement)
                 xmlstring = xmlstring.Replace("<entryid />", alreadyencoded);
 
@@ -170,7 +170,7 @@ namespace AcumulusClient
         public CreateInvoiceResponse CreateInvoice(Customer invoice)
         {
             AcumulusBaseObject obj = new AcumulusBaseObject(contract);
-            obj.withcontract = true;
+            obj.withcontract = false;
             obj.Url = "/acumulus/stable/invoices/invoice_add.php";
             obj.entryid = invoice.ToXML().Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "").Replace("<format>xml</format>", "");
             var t = Post(obj, true);

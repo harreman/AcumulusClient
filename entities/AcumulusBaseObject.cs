@@ -27,7 +27,9 @@ namespace AcumulusClient.entities
         public string Url = "";
         [XmlIgnore]
         public string UrlPickList = "";
-        public Contract contract { get; set; }
+
+        public virtual Contract contract { get; set; }
+
         public string format = "xml";
         [XmlIgnore]
         public int testmode = 1;
@@ -80,8 +82,6 @@ namespace AcumulusClient.entities
         {
             if (!withcontract)
             {
-                contract = new Contract();
-
                 zconnector = new Connector();
             }
             XmlSerializer x = new XmlSerializer(this.GetType());
