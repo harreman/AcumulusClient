@@ -31,12 +31,12 @@ namespace AcumulusClient.entities
     public partial class ACInvoiceTermplate
     {
 
-        private object invoicetemplateidField;
+        private string invoicetemplateidField;
 
-        private object invoicetemplatenameField;
+        private string invoicetemplatenameField;
 
         /// <remarks/>
-        public object invoicetemplateid
+        public string invoicetemplateid
         {
             get
             {
@@ -49,7 +49,7 @@ namespace AcumulusClient.entities
         }
 
         /// <remarks/>
-        public object invoicetemplatename
+        public string invoicetemplatename
         {
             get
             {

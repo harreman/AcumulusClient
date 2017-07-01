@@ -31,14 +31,14 @@ namespace AcumulusClient.entities
     public partial class ACAccount
     {
 
-        private object accountidField;
+        private string accountidField;
 
-        private object accountnumberField;
+        private string accountnumberField;
 
-        private object accountdescriptionField;
+        private string accountdescriptionField;
 
         /// <remarks/>
-        public object accountid
+        public string accountid
         {
             get
             {
@@ -51,7 +51,7 @@ namespace AcumulusClient.entities
         }
 
         /// <remarks/>
-        public object accountnumber
+        public string accountnumber
         {
             get
             {
@@ -64,7 +64,7 @@ namespace AcumulusClient.entities
         }
 
         /// <remarks/>
-        public object accountdescription
+        public string accountdescription
         {
             get
             {
