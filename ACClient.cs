@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace AcumulusClient
@@ -40,30 +41,36 @@ namespace AcumulusClient
     {
 
         private readonly Contract contract;
+        private readonly Connector connector;
         private readonly HttpClient client = new HttpClient();
 
-        public ACClient(Contract _contract)
+        public ACClient(Contract _contract, Connector _connector)
         {
             contract = _contract;
             client = new HttpClient();
+            connector = _connector;
             client.BaseAddress = new Uri("https://api.sielsystems.nl");
         }
 
-        public AcumulusBaseObject Get(dynamic data)
+        public async Task<AcumulusBaseObject> GetAsync(dynamic data)
         {
 
             string xmlstring = data.ToXML().Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-            var response = client.GetAsync(data.Url + "?xmlstring=" + HttpUtility.HtmlEncode(xmlstring)).Result;
+            var response = await client.GetAsync(data.Url + "?xmlstring=" + HttpUtility.HtmlEncode(xmlstring));
+#if DEBUG
+#pragma warning disable S1481 // Unused local variables should be removed
             var text = response.Content.ReadAsStringAsync();
-            return new AcumulusBaseObject(contract);
+#pragma warning restore S1481 // Unused local variables should be removed
+#endif
+            return new AcumulusBaseObject(contract, connector);
 
         }
 
-        public string Post(AcumulusBaseObject data, bool removeentryelement = false)
+        public async Task<string> PostAsync(AcumulusBaseObject data, bool removeentryelement = false)
         {
             var text = "";
 
-            var result = client.PostAsync(data.Url, GetHttpRequestMessage(data, removeentryelement)).Result;
+            var result = await client.PostAsync(data.Url, GetHttpRequestMessage(data, removeentryelement));
             text = result.Content.ReadAsStringAsync().Result;
 
 
@@ -71,21 +78,21 @@ namespace AcumulusClient
 
         }
 
-        public string Put<t>(int id, AcumulusBaseObject data)
+        public async Task<string> PutAsync<t>(int id, AcumulusBaseObject data)
         {
 
             var requestMessage = GetHttpRequestMessage(data);
 
-            var result = client.PutAsync(data.Url + id, requestMessage).Result;
+            var result = await client.PutAsync(data.Url + id, requestMessage);
 
             return result.Content.ReadAsStringAsync().Result;
 
         }
 
-        public string Delete(int id, AcumulusBaseObject data)
+        public async Task<string> DeleteAsync(int id, AcumulusBaseObject data)
         {
 
-            var result = client.DeleteAsync(data.Url + id).Result;
+            var result = await client.DeleteAsync(data.Url + id);
 
             return result.Content.ToString();
 
@@ -111,69 +118,69 @@ namespace AcumulusClient
             return content;
         }
 
-        public void GetGeneralInfo()
+        public async Task GetGeneralInfoAsync()
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.Url = "/acumulus/stable/general/my_acumulus.php";
             obj.withcontract = true;
-            var t = Post(obj);
+            await PostAsync(obj);
         }
-        public IList<Contact> GetContactList()
+        public async Task<IList<Contact>> GetContactListAsync()
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.Url = "/acumulus/stable/contacts/contacts_list.php";
             obj.withcontract = true;
-            var t = Post(obj);
+            var t = await PostAsync(obj);
             return AcumulusBaseObject.ListFromXML<Contact>(t);
         }
 
 
-        public IList<Product> GetProducts()
+        public async Task<IList<Product>> GetProductsAsync()
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.Url = "/acumulus/stable/picklists/picklist_products.php";
             obj.withcontract = true;
-            var t = Post(obj);
+            var t = await PostAsync(obj);
             return AcumulusBaseObject.ListFromXML<Product>(t);
         }
 
-        public IList<Entry> GetOpenInvoices()
+        public async Task<IList<Entry>> GetOpenInvoicesAsync()
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.Url = "/acumulus/stable/reports/report_unpaid_debtors.php";
             obj.withcontract = true;
-            var t = Post(obj);
+            var t =await PostAsync(obj);
             return AcumulusBaseObject.ListFromXML<Entry>(t);
         }
 
 
-        public IList<ACInvoice> GetInvoices(string contactid)
+        public async Task<IList<ACInvoice>> GetInvoicesAsync(string contactid)
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.Url = "/acumulus/stable/contacts/contact_invoices_outgoing.php";
             obj.contactid = contactid.ToString();
             obj.withcontract = true;
-            var t = Post(obj);
+            var t =await  PostAsync(obj);
             return AcumulusBaseObject.ListFromXML<ACInvoice>(t);
         }
 
-        public Entry GetInvoiceDetail(string entryid)
+        public async Task<Entry> GetInvoiceDetailAsync(string entryid)
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.Url = "/acumulus/stable/entry/entry_info.php";
             obj.entryid = entryid;
             obj.withcontract = true;
-            var t = Post(obj);
+            var t =await PostAsync(obj);
             return AcumulusBaseObject.FromXML<Entry>(t);
         }
 
-        public CreateInvoiceResponse CreateInvoice(Customer invoice)
+        public async Task<CreateInvoiceResponse> CreateInvoiceAsync(Customer invoice)
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.withcontract = false;
             obj.Url = "/acumulus/stable/invoices/invoice_add.php";
             obj.entryid = invoice.ToXML().Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "").Replace("<format>xml</format>", "");
-            var t = Post(obj, true);
+            var t =await PostAsync(obj, true);
 
             return new CreateInvoiceResponse()
             {
@@ -184,12 +191,9 @@ namespace AcumulusClient
             };
         }
 
-        public void Dispose()
-        {
-            client.Dispose();
-        }
 
-        public void SetPaidStatus(string token, DateTime? invoicedate)
+
+        public async Task SetPaidStatusAsync(string token, DateTime? invoicedate)
         {
 
             DateTime invdate = invoicedate.HasValue ? (DateTime)invoicedate : DateTime.Now.Date;
@@ -201,46 +205,82 @@ namespace AcumulusClient
             obj.paymentstatus = "2";
             obj.Url = "/acumulus/stable/invoices/invoice_paymentstatus_set.php";
 
-            var t = Post(obj, true);
+            await PostAsync(obj, true);
         }
 
-        public bool EmailInvoice(EmailInvoice obj)
+        public async Task<bool> EmailInvoiceAsync(EmailInvoice obj)
         {
             obj.withcontract = true;
             obj.invoicetype = "0";
             obj.Url = "/acumulus/stable/invoices/invoice_mail.php";
 
-            var t = Post(obj, true);
+           await PostAsync(obj, true);
 
             return true;
 
         }
-        public bool RemindInvoice(EmailInvoice obj)
+        public async Task<bool> RemindInvoiceAsync(EmailInvoice obj)
         {
 
             obj.withcontract = true;
             obj.invoicetype = "1";
             obj.Url = "/acumulus/stable/invoices/invoice_mail.php";
 
-            var t = Post(obj, true);
+            await PostAsync(obj, true);
             return true;
         }
 
-        public IList<ACAccount> GetBankAccounts()
+        public async Task<IList<ACAccount>> GetBankAccountsAsync()
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.Url = "acumulus/stable/picklists/picklist_accounts.php";
             obj.withcontract = true;
-            var t = Post(obj);
+            var t =await PostAsync(obj);
             return AcumulusBaseObject.ListFromXML<ACAccount>(t);
         }
-        public IList<ACInvoiceTermplate> GetInvoiceTemplates()
+        public async Task<IList<ACInvoiceTermplate>> GetInvoiceTemplatesAsync()
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject(contract);
+            AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.Url = "acumulus/stable/picklists/picklist_invoicetemplates.php";
             obj.withcontract = true;
-            var t = Post(obj);
+            var t = await PostAsync(obj);
             return AcumulusBaseObject.ListFromXML<ACInvoiceTermplate>(t);
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects).
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TODO: set large fields to null.
+
+                disposedValue = true;
+            }
+        }
+
+        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+        // ~ACClient() {
+        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        //   Dispose(false);
+        // }
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+            // TODO: uncomment the following line if the finalizer is overridden above.
+            GC.SuppressFinalize(this);
+        }
+        #endregion
+
     }
 }

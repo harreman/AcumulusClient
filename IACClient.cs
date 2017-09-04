@@ -1,22 +1,23 @@
 ﻿using AcumulusClient.entities;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AcumulusClient
 {
     public interface IACClient : IDisposable
     {
-        IList<Contact> GetContactList();
-        IList<Product> GetProducts();
-        string Post(AcumulusBaseObject data, bool removeentryelement = false);
-        IList<ACInvoice> GetInvoices(string contactid);
-        Entry GetInvoiceDetail(string entryid);
-        IList<Entry> GetOpenInvoices();
-        CreateInvoiceResponse CreateInvoice(Customer acinvoice);
-        void SetPaidStatus(string token,DateTime? invoicedate);
-        IList<ACAccount> GetBankAccounts();
-        IList<ACInvoiceTermplate> GetInvoiceTemplates();
-        bool EmailInvoice(EmailInvoice obj);
-        bool RemindInvoice(EmailInvoice obj);
+        Task<IList<Contact>> GetContactListAsync();
+        Task<IList<Product>> GetProductsAsync();
+        Task<string> PostAsync(AcumulusBaseObject data, bool removeentryelement = false);
+        Task<IList<ACInvoice>> GetInvoicesAsync(string contactid);
+        Task<Entry> GetInvoiceDetailAsync(string entryid);
+        Task<IList<Entry>> GetOpenInvoicesAsync();
+        Task<CreateInvoiceResponse> CreateInvoiceAsync(Customer acinvoice);
+        Task SetPaidStatusAsync(string token,DateTime? invoicedate);
+        Task<IList<ACAccount>> GetBankAccountsAsync();
+        Task<IList<ACInvoiceTermplate>> GetInvoiceTemplatesAsync();
+        Task<bool> EmailInvoiceAsync(EmailInvoice obj);
+        Task<bool> RemindInvoiceAsync(EmailInvoice obj);
     }
 }

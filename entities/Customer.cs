@@ -9,10 +9,11 @@ namespace AcumulusClient.entities
 
     public class Customer : AcumulusBaseObject
     {
-        private bool v;
-        [XmlIgnore]
-        public override Contract contract { get; set; }
 
+        [XmlIgnore]
+        public override Contract Contract { get; set; }
+        [XmlIgnore]
+        public override Connector Connector { get; set; }
         public Customer() : base()
         {
             Url = "/acumulus/stable/contacts/contact_manage.php";

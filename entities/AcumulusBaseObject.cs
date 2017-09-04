@@ -17,9 +17,10 @@ namespace AcumulusClient.entities
         public AcumulusBaseObject()
         {
         }
-        public AcumulusBaseObject(Contract _contract) : base()
+        public AcumulusBaseObject(Contract _contract,Connector _connector) : base()
         {
-            contract = _contract;
+            Contract = _contract;
+            Connector = _connector;
         }
 
 
@@ -28,8 +29,10 @@ namespace AcumulusClient.entities
         [XmlIgnore]
         public string UrlPickList = "";
 
-        public virtual Contract contract { get; set; }
-
+        [XmlElement(ElementName ="contract")]
+        public virtual Contract Contract { get; set; }
+        [XmlElement(ElementName = "connector")]
+        public virtual Connector Connector { get; set; }
         public string format = "xml";
         [XmlIgnore]
         public int testmode = 1;
@@ -75,15 +78,10 @@ namespace AcumulusClient.entities
                 _entryid = value;
             }
         }
-        [XmlElement("connector")]
-        public Connector zconnector { get; set; }
+
         public string ToXML()
 
         {
-            if (!withcontract)
-            {
-                zconnector = new Connector();
-            }
             XmlSerializer x = new XmlSerializer(this.GetType());
             XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
             ns.Add("", "");
@@ -149,7 +147,7 @@ namespace AcumulusClient.entities
                     {
                     }
                 }
-                return returnlist;
+                return null;
             }
             return null;
         }
