@@ -5,3 +5,10 @@ D:\Users\sander\Source\Repos\AcumulusClient\obj\Release\AcumulusClient.dll
 D:\Users\sander\Source\Repos\AcumulusClient\obj\Release\AcumulusClient.pdb
 D:\Users\sander\Source\Repos\AcumulusClient\obj\Release\AcumulusClient.csprojResolveAssemblyReference.cache
 D:\Users\sander\Source\Repos\AcumulusClient\obj\Release\AcumulusClient.csproj.CoreCompileInputs.cache
+C:\Users\Sander Harreman\Source\Repos\AcumulusClient\bin\Release\AcumulusClient.dll.config
+C:\Users\Sander Harreman\Source\Repos\AcumulusClient\bin\Release\AcumulusClient.dll
+C:\Users\Sander Harreman\Source\Repos\AcumulusClient\bin\Release\AcumulusClient.pdb
+C:\Users\Sander Harreman\Source\Repos\AcumulusClient\obj\Release\AcumulusClient.csprojResolveAssemblyReference.cache
+C:\Users\Sander Harreman\Source\Repos\AcumulusClient\obj\Release\AcumulusClient.csproj.CoreCompileInputs.cache
+C:\Users\Sander Harreman\Source\Repos\AcumulusClient\obj\Release\AcumulusClient.dll
+C:\Users\Sander Harreman\Source\Repos\AcumulusClient\obj\Release\AcumulusClient.pdb

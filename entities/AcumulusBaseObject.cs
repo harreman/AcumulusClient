@@ -147,7 +147,7 @@ namespace AcumulusClient.entities
                     {
                     }
                 }
-                return null;
+                return returnlist;
             }
             return null;
         }
