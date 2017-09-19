@@ -4,3 +4,4 @@ D:\Users\sander\Source\Repos\AcumulusClient\bin\Debug\AcumulusClient.pdb
 D:\Users\sander\Source\Repos\AcumulusClient\obj\Debug\AcumulusClient.csproj.CoreCompileInputs.cache
 D:\Users\sander\Source\Repos\AcumulusClient\obj\Debug\AcumulusClient.dll
 D:\Users\sander\Source\Repos\AcumulusClient\obj\Debug\AcumulusClient.pdb
+D:\Users\sander\Source\Repos\AcumulusClient\obj\Debug\AcumulusClient.csprojResolveAssemblyReference.cache
