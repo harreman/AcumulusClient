@@ -1,6 +1,7 @@
 ﻿using AcumulusClient.entities;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
@@ -50,6 +51,7 @@ namespace AcumulusClient
             client = new HttpClient();
             connector = _connector;
             client.BaseAddress = new Uri("https://api.sielsystems.nl");
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
         }
 
         public async Task<AcumulusBaseObject> GetAsync(dynamic data)
