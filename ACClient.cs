@@ -43,14 +43,14 @@ namespace AcumulusClient
 
         private readonly Contract contract;
         private readonly Connector connector;
-        private readonly HttpClient client = new HttpClient();
+        private readonly HttpClient client;
 
         public ACClient(Contract _contract, Connector _connector)
         {
             contract = _contract;
             client = new HttpClient();
             connector = _connector;
-            client.BaseAddress = new Uri("https://api.sielsystems.nl");
+            client.BaseAddress = contract.BaseUrl; // new Uri("https://api.sielsystems.nl");
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
         }
 
@@ -219,7 +219,7 @@ namespace AcumulusClient
             obj.withcontract = true;
             obj.invoicetype = "0";
             obj.Url = "/acumulus/stable/invoices/invoice_mail.php";
-             await PostAsync(obj, true);
+            await PostAsync(obj, true);
 
             return true;
 
