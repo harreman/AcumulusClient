@@ -17,6 +17,6 @@ namespace AcumulusClient.entities
         public string password { get; set; }
         public string emailonerror { get; set; }
         public string emailonwarning { get; set; }
-        public Uri BaseUrl { get;  set; }
+        public string BaseUrl { get;  set; }
     }
 }

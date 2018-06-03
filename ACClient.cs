@@ -50,7 +50,7 @@ namespace AcumulusClient
             contract = _contract;
             client = new HttpClient();
             connector = _connector;
-            client.BaseAddress = contract.BaseUrl; // new Uri("https://api.sielsystems.nl");
+            client.BaseAddress = new Uri(contract.BaseUrl);
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
         }
 
