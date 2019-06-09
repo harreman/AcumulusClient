@@ -11,7 +11,7 @@ namespace AcumulusClient.entities
         {
             application = "HarremanIT";
             webkoppel = "WebPlugin";
-            development ="Production";
+            development = "Production";
             remark = "";
             sourceuri = "http://www.harreman.it";
         }

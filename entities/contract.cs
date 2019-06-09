@@ -1,6 +1,4 @@
-﻿using System;
-using System.Configuration;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace AcumulusClient.entities
 {
@@ -17,6 +15,6 @@ namespace AcumulusClient.entities
         public string password { get; set; }
         public string emailonerror { get; set; }
         public string emailonwarning { get; set; }
-        public string BaseUrl { get;  set; }
+        public string BaseUrl { get; set; }
     }
 }

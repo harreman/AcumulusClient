@@ -9,7 +9,7 @@ namespace AcumulusClient.entities
     public class ACInvoice : AcumulusBaseObject
     {
         [XmlIgnore]
-        public override Contract Contract {get;set;}
+        public override Contract Contract { get; set; }
         [XmlIgnore]
         public override Connector Connector { get; set; }
         public string concept { get; set; }

@@ -20,7 +20,7 @@ namespace AcumulusClient.entities
         public string productprice { get; set; }
         public string productvatrate { get; set; }
         public string productsku { get; set; }
-        public string productean  { get; set; }
+        public string productean { get; set; }
         public string productnotes { get; set; }
     }
 }

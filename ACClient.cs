@@ -72,8 +72,8 @@ namespace AcumulusClient
         {
             var text = "";
 
-            var result = await client.PostAsync(data.Url, GetHttpRequestMessage(data, removeentryelement));
-            text = result.Content.ReadAsStringAsync().Result;
+            var result = await client.PostAsync(data.Url, GetHttpRequestMessage(data, removeentryelement)).ConfigureAwait(false);
+            text = await result.Content.ReadAsStringAsync().ConfigureAwait(false); 
 
 
             return text;
@@ -87,7 +87,7 @@ namespace AcumulusClient
 
             var result = await client.PutAsync(data.Url + id, requestMessage);
 
-            return result.Content.ReadAsStringAsync().Result;
+            return await result.Content.ReadAsStringAsync();
 
         }
 
@@ -182,7 +182,7 @@ namespace AcumulusClient
             obj.withcontract = false;
             obj.Url = "/acumulus/stable/invoices/invoice_add.php";
             obj.entryid = invoice.ToXML().Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "").Replace("<format>xml</format>", "");
-            var t = await PostAsync(obj, true);
+            var t = await PostAsync(obj, true).ConfigureAwait(false);
 
             return new CreateInvoiceResponse()
             {

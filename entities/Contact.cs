@@ -13,7 +13,7 @@ namespace AcumulusClient.entities
             UrlPickList = "/acumulus/stable/picklists/picklist_contacttypes.php";
         }
 
-       // public int contactid { get; set; }
+        // public int contactid { get; set; }
         public string contactyourid { get; set; }
         public string contactemail { get; set; }
         public string contacttype { get; set; }

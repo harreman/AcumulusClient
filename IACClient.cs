@@ -14,7 +14,7 @@ namespace AcumulusClient
         Task<Entry> GetInvoiceDetailAsync(string entryid);
         Task<IList<Entry>> GetOpenInvoicesAsync();
         Task<CreateInvoiceResponse> CreateInvoiceAsync(Customer acinvoice);
-        Task SetPaidStatusAsync(string token,DateTime? invoicedate);
+        Task SetPaidStatusAsync(string token, DateTime? invoicedate);
         Task<IList<ACAccount>> GetBankAccountsAsync();
         Task<IList<ACInvoiceTermplate>> GetInvoiceTemplatesAsync();
         Task<bool> EmailInvoiceAsync(EmailInvoice obj);

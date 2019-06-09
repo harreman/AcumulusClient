@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AcumulusClient.interfaces
 {
@@ -10,6 +7,6 @@ namespace AcumulusClient.interfaces
     {
         string ToXML();
         Type FindType(string fullName);
-        List<T> ListFromXML<T>(string data);
+        List<T> ListFromXML<T>(string data) where T : class;
     }
 }

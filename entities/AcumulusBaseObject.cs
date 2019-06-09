@@ -17,7 +17,7 @@ namespace AcumulusClient.entities
         public AcumulusBaseObject()
         {
         }
-        public AcumulusBaseObject(Contract _contract,Connector _connector) : base()
+        public AcumulusBaseObject(Contract _contract, Connector _connector) : base()
         {
             Contract = _contract;
             Connector = _connector;
@@ -29,7 +29,7 @@ namespace AcumulusClient.entities
         [XmlIgnore]
         public string UrlPickList = "";
 
-        [XmlElement(ElementName ="contract")]
+        [XmlElement(ElementName = "contract")]
         public virtual Contract Contract { get; set; }
         [XmlElement(ElementName = "connector")]
         public virtual Connector Connector { get; set; }
@@ -101,7 +101,7 @@ namespace AcumulusClient.entities
         {
             if (fullName == "invoice")
                 fullName = "AcumulusClient.entities.ACInvoice";
-           else if (fullName == "account")
+            else if (fullName == "account")
                 fullName = "AcumulusClient.entities.ACAccount";
             else if (fullName == "invoicetemplate")
                 fullName = "AcumulusClient.entities.ACInvoiceTermplate";
@@ -121,7 +121,7 @@ namespace AcumulusClient.entities
         }
         public static List<T> ListFromXML<T>(string data)
         {
-            data= data.Replace(Environment.NewLine, "");
+            data = data.Replace(Environment.NewLine, "");
             char tab = '\u0009';
             data = data.Replace(tab.ToString(), "");
 
@@ -135,17 +135,13 @@ namespace AcumulusClient.entities
                     var found = FindType(innernode.Name);
                     if (found == null)
                         continue;
-                    try
+
+                    using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(innernode.OuterXml)))
                     {
-                        using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(innernode.OuterXml)))
-                        {
-                            XmlSerializer serializer = new XmlSerializer(typeof(T));
-                            returnlist.Add((T)serializer.Deserialize(stream));
-                        }
+                        XmlSerializer serializer = new XmlSerializer(typeof(T));
+                        returnlist.Add((T)serializer.Deserialize(stream));
                     }
-                    catch (Exception e)
-                    {
-                    }
+
                 }
                 return returnlist;
             }
@@ -164,14 +160,10 @@ namespace AcumulusClient.entities
 
                 using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(node.OuterXml)))
                 {
-                    try
-                    {
-                        XmlSerializer serializer = new XmlSerializer(typeof(T));
-                        return (T)serializer.Deserialize(stream);
-                    }
-                    catch (Exception e)
-                    {
-                    }
+
+                    XmlSerializer serializer = new XmlSerializer(typeof(T));
+                    return (T)serializer.Deserialize(stream);
+
                 }
             }
             return default(T);
