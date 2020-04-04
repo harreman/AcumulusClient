@@ -73,7 +73,7 @@ namespace AcumulusClient
             var text = "";
 
             var result = await client.PostAsync(data.Url, GetHttpRequestMessage(data, removeentryelement)).ConfigureAwait(false);
-            text = await result.Content.ReadAsStringAsync().ConfigureAwait(false); 
+            text = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
 
             return text;
@@ -127,11 +127,16 @@ namespace AcumulusClient
             obj.withcontract = true;
             await PostAsync(obj);
         }
-        public async Task<IList<Contact>> GetContactListAsync()
+        public async Task<IList<Contact>> GetContactListAsync(string filter = "")
         {
-            AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
+            ContactList obj = new ContactList();
+            obj.Contract = contract;
+            obj.Connector = connector;
+
             obj.Url = "/acumulus/stable/contacts/contacts_list.php";
             obj.withcontract = true;
+            obj.contactstatus = 1;
+            obj.filter = filter;
             var t = await PostAsync(obj);
             return AcumulusBaseObject.ListFromXML<Contact>(t);
         }

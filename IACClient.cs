@@ -7,7 +7,7 @@ namespace AcumulusClient
 {
     public interface IACClient : IDisposable
     {
-        Task<IList<Contact>> GetContactListAsync();
+        Task<IList<Contact>> GetContactListAsync(string filter = "");
         Task<IList<Product>> GetProductsAsync();
         Task<string> PostAsync(AcumulusBaseObject data, bool removeentryelement = false);
         Task<IList<ACInvoice>> GetInvoicesAsync(string contactid);

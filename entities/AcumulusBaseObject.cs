@@ -11,7 +11,7 @@ namespace AcumulusClient.entities
 {
     [Serializable]
     [XmlRoot(ElementName = "myxml")]
-    public class AcumulusBaseObject
+    public class AcumulusBaseObject 
 
     {
         public AcumulusBaseObject()
