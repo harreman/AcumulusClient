@@ -58,7 +58,7 @@ namespace AcumulusClient
         {
 
             string xmlstring = data.ToXML().Replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-            var response = await client.GetAsync(data.Url + "?xmlstring=" + HttpUtility.HtmlEncode(xmlstring));
+            var response = await client.GetAsync(data.Url + "?xmlstring=" + HttpUtility.HtmlEncode(xmlstring)).ConfigureAwait(false);
 #if DEBUG
 #pragma warning disable S1481 // Unused local variables should be removed
             var text = response.Content.ReadAsStringAsync();
@@ -85,16 +85,16 @@ namespace AcumulusClient
 
             var requestMessage = GetHttpRequestMessage(data);
 
-            var result = await client.PutAsync(data.Url + id, requestMessage);
+            var result = await client.PutAsync(data.Url + id, requestMessage).ConfigureAwait(false);
 
-            return await result.Content.ReadAsStringAsync();
+            return await result.Content.ReadAsStringAsync().ConfigureAwait(false);
 
         }
 
         public async Task<string> DeleteAsync(int id, AcumulusBaseObject data)
         {
 
-            var result = await client.DeleteAsync(data.Url + id);
+            var result = await client.DeleteAsync(data.Url + id).ConfigureAwait(false);
 
             return result.Content.ToString();
 
@@ -125,7 +125,7 @@ namespace AcumulusClient
             AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.Url = "/acumulus/stable/general/my_acumulus.php";
             obj.withcontract = true;
-            await PostAsync(obj);
+            await PostAsync(obj).ConfigureAwait(false);
         }
         public async Task<IList<Contact>> GetContactListAsync(string filter = "")
         {
@@ -137,7 +137,7 @@ namespace AcumulusClient
             obj.withcontract = true;
             obj.contactstatus = 1;
             obj.filter = filter;
-            var t = await PostAsync(obj);
+            var t = await PostAsync(obj).ConfigureAwait(false);
             return AcumulusBaseObject.ListFromXML<Contact>(t);
         }
 
@@ -147,7 +147,7 @@ namespace AcumulusClient
             AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.Url = "/acumulus/stable/picklists/picklist_products.php";
             obj.withcontract = true;
-            var t = await PostAsync(obj);
+            var t = await PostAsync(obj).ConfigureAwait(false);
             return AcumulusBaseObject.ListFromXML<Product>(t);
         }
 
@@ -156,7 +156,7 @@ namespace AcumulusClient
             AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.Url = "/acumulus/stable/reports/report_unpaid_debtors.php";
             obj.withcontract = true;
-            var t = await PostAsync(obj);
+            var t = await PostAsync(obj).ConfigureAwait(false);
             return AcumulusBaseObject.ListFromXML<Entry>(t);
         }
 
@@ -167,7 +167,7 @@ namespace AcumulusClient
             obj.Url = "/acumulus/stable/contacts/contact_invoices_outgoing.php";
             obj.contactid = contactid.ToString();
             obj.withcontract = true;
-            var t = await PostAsync(obj);
+            var t = await PostAsync(obj).ConfigureAwait(false);
             return AcumulusBaseObject.ListFromXML<ACInvoice>(t);
         }
 
@@ -177,7 +177,7 @@ namespace AcumulusClient
             obj.Url = "/acumulus/stable/entry/entry_info.php";
             obj.entryid = entryid;
             obj.withcontract = true;
-            var t = await PostAsync(obj);
+            var t = await PostAsync(obj).ConfigureAwait(false);
             return AcumulusBaseObject.FromXML<Entry>(t);
         }
 
@@ -214,7 +214,7 @@ namespace AcumulusClient
             obj.paymentstatus = "2";
             obj.Url = "/acumulus/stable/invoices/invoice_paymentstatus_set.php";
 
-            await PostAsync(obj, true);
+            await PostAsync(obj, true).ConfigureAwait(false);
         }
 
         public async Task<bool> EmailInvoiceAsync(EmailInvoice obj)
@@ -224,7 +224,7 @@ namespace AcumulusClient
             obj.withcontract = true;
             obj.invoicetype = "0";
             obj.Url = "/acumulus/stable/invoices/invoice_mail.php";
-            await PostAsync(obj, true);
+            await PostAsync(obj, true).ConfigureAwait(false);
 
             return true;
 
@@ -237,7 +237,7 @@ namespace AcumulusClient
             obj.invoicetype = "1";
             obj.Url = "/acumulus/stable/invoices/invoice_mail.php";
 
-            await PostAsync(obj, true);
+            await PostAsync(obj, true).ConfigureAwait(false);
             return true;
         }
 
@@ -246,7 +246,7 @@ namespace AcumulusClient
             AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.Url = "acumulus/stable/picklists/picklist_accounts.php";
             obj.withcontract = true;
-            var t = await PostAsync(obj);
+            var t = await PostAsync(obj).ConfigureAwait(false);
             return AcumulusBaseObject.ListFromXML<ACAccount>(t);
         }
         public async Task<IList<ACInvoiceTermplate>> GetInvoiceTemplatesAsync()
@@ -254,7 +254,7 @@ namespace AcumulusClient
             AcumulusBaseObject obj = new AcumulusBaseObject(contract, connector);
             obj.Url = "acumulus/stable/picklists/picklist_invoicetemplates.php";
             obj.withcontract = true;
-            var t = await PostAsync(obj);
+            var t = await PostAsync(obj).ConfigureAwait(false);
             return AcumulusBaseObject.ListFromXML<ACInvoiceTermplate>(t);
         }
 
