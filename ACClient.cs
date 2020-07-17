@@ -1,5 +1,5 @@
 ﻿using AcumulusClient.entities;
-using Microsoft.Extensions.Logging;
+using Microsoft.ApplicationInsights;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -41,15 +41,15 @@ namespace AcumulusClient
 
     public partial class ACClient : IACClient
     {
+        private readonly TelemetryClient telemetryClient;
 
         private readonly Contract contract;
         private readonly Connector connector;
         private readonly HttpClient client;
-        private readonly ILogger logger;
 
-        public ACClient(Contract _contract, Connector _connector, ILogger logger)
+        public ACClient(Contract _contract, Connector _connector, TelemetryClient telemetryClient)
         {
-            this.logger = logger;
+            this.telemetryClient = telemetryClient;
             contract = _contract;
             client = new HttpClient();
             connector = _connector;
@@ -120,9 +120,8 @@ namespace AcumulusClient
                      new KeyValuePair<string, string>("xmlstring", xmlstring)
                             });
 
-
-            logger.LogInformation(xmlstring);
-
+            var properties = new Dictionary<string, string> { { "xmlstring", xmlstring } };
+            telemetryClient.TrackEvent("AcumulusClient", properties);
             return content;
         }
 
