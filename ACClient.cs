@@ -1,4 +1,5 @@
 ﻿using AcumulusClient.entities;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -44,9 +45,11 @@ namespace AcumulusClient
         private readonly Contract contract;
         private readonly Connector connector;
         private readonly HttpClient client;
+        private readonly ILogger logger;
 
-        public ACClient(Contract _contract, Connector _connector)
+        public ACClient(Contract _contract, Connector _connector, ILogger logger)
         {
+            this.logger = logger;
             contract = _contract;
             client = new HttpClient();
             connector = _connector;
@@ -116,6 +119,9 @@ namespace AcumulusClient
             {
                      new KeyValuePair<string, string>("xmlstring", xmlstring)
                             });
+
+
+            logger.LogInformation(xmlstring);
 
             return content;
         }
