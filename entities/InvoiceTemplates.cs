@@ -15,14 +15,8 @@ namespace AcumulusClient.entities
         [System.Xml.Serialization.XmlElementAttribute("invoicetemplate")]
         public ACInvoiceTermplate[] invoicetemplate
         {
-            get
-            {
-                return this.invoicetemplateField;
-            }
-            set
-            {
-                this.invoicetemplateField = value;
-            }
+            get => invoicetemplateField;
+            set => invoicetemplateField = value;
         }
     }
 
@@ -38,27 +32,15 @@ namespace AcumulusClient.entities
         /// <remarks/>
         public string invoicetemplateid
         {
-            get
-            {
-                return this.invoicetemplateidField;
-            }
-            set
-            {
-                this.invoicetemplateidField = value;
-            }
+            get => invoicetemplateidField;
+            set => invoicetemplateidField = value;
         }
 
         /// <remarks/>
         public string invoicetemplatename
         {
-            get
-            {
-                return this.invoicetemplatenameField;
-            }
-            set
-            {
-                this.invoicetemplatenameField = value;
-            }
+            get => invoicetemplatenameField;
+            set => invoicetemplatenameField = value;
         }
     }
 

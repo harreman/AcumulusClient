@@ -15,14 +15,8 @@ namespace AcumulusClient.entities
         [System.Xml.Serialization.XmlElementAttribute("account")]
         public ACAccount[] account
         {
-            get
-            {
-                return this.accountField;
-            }
-            set
-            {
-                this.accountField = value;
-            }
+            get => accountField;
+            set => accountField = value;
         }
     }
 
@@ -40,40 +34,22 @@ namespace AcumulusClient.entities
         /// <remarks/>
         public string accountid
         {
-            get
-            {
-                return this.accountidField;
-            }
-            set
-            {
-                this.accountidField = value;
-            }
+            get => accountidField;
+            set => accountidField = value;
         }
 
         /// <remarks/>
         public string accountnumber
         {
-            get
-            {
-                return this.accountnumberField;
-            }
-            set
-            {
-                this.accountnumberField = value;
-            }
+            get => accountnumberField;
+            set => accountnumberField = value;
         }
 
         /// <remarks/>
         public string accountdescription
         {
-            get
-            {
-                return this.accountdescriptionField;
-            }
-            set
-            {
-                this.accountdescriptionField = value;
-            }
+            get => accountdescriptionField;
+            set => accountdescriptionField = value;
         }
     }
 

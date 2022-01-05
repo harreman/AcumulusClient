@@ -11,7 +11,7 @@ namespace AcumulusClient.entities
 {
     [Serializable]
     [XmlRoot(ElementName = "myxml")]
-    public class AcumulusBaseObject 
+    public class AcumulusBaseObject
 
     {
         public AcumulusBaseObject()
@@ -41,27 +41,15 @@ namespace AcumulusClient.entities
         [XmlIgnore]
         public bool withcontract
         {
-            get
-            {
-                return _withcontract;
-            }
-            set
-            {
-                _withcontract = value;
-            }
+            get => _withcontract;
+            set => _withcontract = value;
         }
         [XmlIgnore]
         private string _contactid = null;
         public string contactid
         {
-            get
-            {
-                return _contactid;
-            }
-            set
-            {
-                _contactid = value;
-            }
+            get => _contactid;
+            set => _contactid = value;
         }
         [XmlIgnore]
         private string _entryid = null;
@@ -69,20 +57,14 @@ namespace AcumulusClient.entities
         public string entryid
 
         {
-            get
-            {
-                return _entryid;
-            }
-            set
-            {
-                _entryid = value;
-            }
+            get => _entryid;
+            set => _entryid = value;
         }
 
         public string ToXML()
 
         {
-            XmlSerializer x = new XmlSerializer(this.GetType());
+            XmlSerializer x = new XmlSerializer(GetType());
             XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
             ns.Add("", "");
 
@@ -100,13 +82,22 @@ namespace AcumulusClient.entities
         private static Type FindType(string fullName)
         {
             if (fullName == "invoice")
+            {
                 fullName = "AcumulusClient.entities.ACInvoice";
+            }
             else if (fullName == "account")
+            {
                 fullName = "AcumulusClient.entities.ACAccount";
+            }
             else if (fullName == "invoicetemplate")
+            {
                 fullName = "AcumulusClient.entities.ACInvoiceTermplate";
+            }
             else
+            {
                 fullName = "AcumulusClient.entities." + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(fullName);
+            }
+
             try
             {
                 Type found = AppDomain.CurrentDomain.GetAssemblies()
@@ -132,9 +123,11 @@ namespace AcumulusClient.entities
                 List<T> returnlist = new List<T>();
                 foreach (XmlNode innernode in node.ChildNodes)
                 {
-                    var found = FindType(innernode.Name);
+                    Type found = FindType(innernode.Name);
                     if (found == null)
+                    {
                         continue;
+                    }
 
                     using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(innernode.OuterXml)))
                     {
@@ -171,6 +164,6 @@ namespace AcumulusClient.entities
     }
     public class Utf8StringWriter : StringWriter
     {
-        public override Encoding Encoding { get { return Encoding.UTF8; } }
+        public override Encoding Encoding => Encoding.UTF8;
     }
 }
