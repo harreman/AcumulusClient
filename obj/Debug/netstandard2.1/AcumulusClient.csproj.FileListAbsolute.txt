@@ -1,9 +1,0 @@
-D:\Users\sander\Source\Repos\AcumulusClient\bin\Debug\netstandard2.1\AcumulusClient.dll.config
-D:\Users\sander\Source\Repos\AcumulusClient\bin\Debug\netstandard2.1\AcumulusClient.deps.json
-D:\Users\sander\Source\Repos\AcumulusClient\bin\Debug\netstandard2.1\AcumulusClient.dll
-D:\Users\sander\Source\Repos\AcumulusClient\bin\Debug\netstandard2.1\AcumulusClient.pdb
-D:\Users\sander\Source\Repos\AcumulusClient\obj\Debug\netstandard2.1\AcumulusClient.dll
-D:\Users\sander\Source\Repos\AcumulusClient\obj\Debug\netstandard2.1\AcumulusClient.pdb
-D:\Users\sander\Source\Repos\AcumulusClient\obj\Debug\netstandard2.1\AcumulusClient.csproj.AssemblyReference.cache
-D:\Users\sander\Source\Repos\AcumulusClient\obj\Debug\netstandard2.1\AcumulusClient.GeneratedMSBuildEditorConfig.editorconfig
-D:\Users\sander\Source\Repos\AcumulusClient\obj\Debug\netstandard2.1\AcumulusClient.csproj.CoreCompileInputs.cache

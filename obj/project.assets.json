@@ -2,19 +2,6 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.1": {
-      "Microsoft.ApplicationInsights/2.14.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Diagnostics.DiagnosticSource": "4.6.0",
-          "System.Memory": "4.5.4"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.ApplicationInsights.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.ApplicationInsights.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.7.0": {
         "type": "package",
         "compile": {
@@ -488,30 +475,6 @@
     }
   },
   "libraries": {
-    "Microsoft.ApplicationInsights/2.14.0": {
-      "sha512": "j66/uh1Mb5Px/nvMwDWx73Wd9MdO2X+zsDw9JScgm5Siz5r4Cw8sTW+VCrjurFkpFqrNkj+0wbfRHDBD9b+elA==",
-      "type": "package",
-      "path": "microsoft.applicationinsights/2.14.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "icon.png",
-        "lib/net45/Microsoft.ApplicationInsights.dll",
-        "lib/net45/Microsoft.ApplicationInsights.pdb",
-        "lib/net45/Microsoft.ApplicationInsights.xml",
-        "lib/net46/Microsoft.ApplicationInsights.dll",
-        "lib/net46/Microsoft.ApplicationInsights.pdb",
-        "lib/net46/Microsoft.ApplicationInsights.xml",
-        "lib/netstandard1.3/Microsoft.ApplicationInsights.dll",
-        "lib/netstandard1.3/Microsoft.ApplicationInsights.pdb",
-        "lib/netstandard1.3/Microsoft.ApplicationInsights.xml",
-        "lib/netstandard2.0/Microsoft.ApplicationInsights.dll",
-        "lib/netstandard2.0/Microsoft.ApplicationInsights.pdb",
-        "lib/netstandard2.0/Microsoft.ApplicationInsights.xml",
-        "microsoft.applicationinsights.2.14.0.nupkg.sha512",
-        "microsoft.applicationinsights.nuspec"
-      ]
-    },
     "Microsoft.CSharp/4.7.0": {
       "sha512": "pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
       "type": "package",
@@ -2324,7 +2287,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.1": [
-      "Microsoft.ApplicationInsights >= 2.14.0",
       "Microsoft.CSharp >= 4.7.0",
       "Microsoft.Extensions.Http >= 6.0.0",
       "Microsoft.Extensions.Options >= 6.0.0",
@@ -2371,10 +2333,6 @@
       "netstandard2.1": {
         "targetAlias": "netstandard2.1",
         "dependencies": {
-          "Microsoft.ApplicationInsights": {
-            "target": "Package",
-            "version": "[2.14.0, )"
-          },
           "Microsoft.CSharp": {
             "target": "Package",
             "version": "[4.7.0, )"
