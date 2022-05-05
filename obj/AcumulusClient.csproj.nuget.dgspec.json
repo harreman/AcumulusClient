@@ -10,26 +10,24 @@
         "projectUniqueName": "D:\\Users\\sander\\Source\\Repos\\AcumulusClient\\AcumulusClient.csproj",
         "projectName": "AcumulusClient",
         "projectPath": "D:\\Users\\sander\\Source\\Repos\\AcumulusClient\\AcumulusClient.csproj",
-        "packagesPath": "C:\\Users\\sharr\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Sander\\.nuget\\packages\\",
         "outputPath": "D:\\Users\\sander\\Source\\Repos\\AcumulusClient\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\sharr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sander\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.0"
+          "netstandard2.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {},
-          "https://harreman.pkgs.visualstudio.com/_packaging/Default/nuget/v3/index.json": {}
+          "https://pkgs.dev.azure.com/harreman/_packaging/Default/nuget/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.0": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
             "projectReferences": {}
           }
         },
@@ -40,17 +38,24 @@
         }
       },
       "frameworks": {
-        "netstandard2.0": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
           "dependencies": {
+            "Microsoft.ApplicationInsights": {
+              "target": "Package",
+              "version": "[2.14.0, )"
+            },
             "Microsoft.CSharp": {
               "target": "Package",
               "version": "[4.7.0, )"
             },
-            "NETStandard.Library": {
-              "suppressParent": "All",
+            "Microsoft.Extensions.Http": {
               "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             },
             "System.Dynamic.Runtime": {
               "target": "Package",
@@ -67,7 +72,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

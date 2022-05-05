@@ -1,5 +1,6 @@
 ﻿using AcumulusClient.entities;
 using Microsoft.ApplicationInsights;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -42,8 +43,6 @@ namespace AcumulusClient
 
     public partial class ACClient : IACClient
     {
-        private readonly TelemetryClient telemetryClient;
-
         private readonly Contract contract;
         private readonly Connector connector;
         private readonly HttpClient client;
@@ -118,7 +117,6 @@ namespace AcumulusClient
                             });
 
             Dictionary<string, string> properties = new Dictionary<string, string> { { "xmlstring", xmlstring } };
-            telemetryClient.TrackEvent("AcumulusClient", properties);
             return content;
         }
 
